@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title%}Login Page {% endblock %}
+{% block content %}
+<h1>Login</h1>
+<form method="POST" action="">
+ {% csrf_token %}
+ {{form.as_p}}
+ <small>
+    <button class="btn btn-secondary">Login</button>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a> 
+ </small>
+</form>
+
+
+{% endblock %}

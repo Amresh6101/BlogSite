@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1>AddCategory</h1>
+<div class="form-group">
+<form method="POST" action="">
+ {% csrf_token %}
+ {{form.as_p}}
+ <small>
+    <button class="btn btn-secondary">Add Category</button>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a> 
+ </small>
+</form>
+</div>
+
+{% else %}
+ <h1>Plzz Login</h1>
+
+ {% endif %}
+
+{% endblock %}

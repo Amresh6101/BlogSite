@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title%}Register Page {% endblock %}
+{% block content %}
+<h1>EditProfile</h1>
+<!--  -->
+{{user.profile.bio}}
+{{user.profile.profile_pic}}
+<form method="POST" action="">
+ {% csrf_token %}
+ {{form.as_p}}
+ <small>
+    <button class="btn btn-secondary">Done</button>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+    
+ </small>
+</form>
+{% endblock %}

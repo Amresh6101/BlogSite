@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>UpdatePost</h1>
+{% if user.is_authenticated %}
+<form method="POST" action="">
+ {% csrf_token %}
+ 
+ {{form.as_p}}
+ {{form.media}}
+ <small>
+   {% if user.id == object.author.id %}
+    <button class="btn btn-secondary">Update</button>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Go Back</a> 
+ </small>
+ {% endif %}
+</form>
+{% else %}
+<h1>Plzz Login to Update </h1>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>HomePage</h1>
+<ul>
+{% for post in object_list %}
+    <li> <a href="{% url 'article-detail' post.pk %}">{{post.title}}</a>------------{{post.author}}---{{post.post_date}}--
+        <a href="{% url 'category' post.category %}">{{post.category}}</a>
+    </li>
+    
+    {{post.body |safe}}
+    {% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+       <a href="{% url 'update-post' post.pk %}">Update</a>
+       <a href="{% url 'delete-post' post.pk %}">Delete</a>
+    {% endif %}  
+    <hr>
+    {% endif %}
+
+
+{% endfor %}
+</ul>
+
+
+{% endblock %}

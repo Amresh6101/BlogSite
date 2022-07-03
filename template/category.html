@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if category_post %}
+<h1>{{cats}}</h1>
+<ul>
+{% for post in category_post %}
+<li> <a href="{% url 'article-detail' post.pk %}">{{post.title}}</a>------------{{post.author}}---{{post.post_date}}
+</li>
+
+{{post.body | slice:":50"|safe}}...
+{% if user.is_authenticated %}
+{% if user.id == post.author.id %}
+<a href="{% url 'update-post' post.pk %}">Update</a>
+<a href="{% url 'delete-post' post.pk %}">Delete</a>
+{% endif %}
+<hr>
+{% endif %}
+
+
+{% endfor %}
+</ul>
+
+{% else %}
+<h1>No Content in this category plzz add to See!!!!!!!</h1>
+
+{% endif %}
+
+<a href="{% url 'home' %}" class="btn btn-secondary">Go Back</a> 
+ 
+
+{% endblock %}
